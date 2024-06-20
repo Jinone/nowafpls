@@ -71,7 +71,7 @@ class BurpExtender(IBurpExtender, IContextMenuFactory, IHttpListener):
             elif content_type == IRequestInfo.CONTENT_TYPE_XML:
                 junk_data = "<!--" + "a" * (int(size_kb * 1024) - 7) + "-->"
             elif content_type == IRequestInfo.CONTENT_TYPE_JSON:
-                junk_data = '"junk":"' + "0" * (int(size_kb * 1024) - 10) + '"' + ','
+                junk_data = '"'+ ''.join(random.sample(string.ascii_letters + string.digits, 8)) +'":"' +  ''.join(random.sample(string.ascii_letters + string.digits, 8)) * (int(size_kb * 128) - 14) + '"' + ','
             else:
                 return
 
